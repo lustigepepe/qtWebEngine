@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>input.txt</file>
         <file>smile - Google Search.html</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

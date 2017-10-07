@@ -3,12 +3,16 @@
 #include <QFile>
 #include <QTextStream>
 
+//#include <QWebEngineView>
+#include <QQmlApplicationEngine>
+#include <qtwebengineglobal.h>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-     loadTextFile();
+    loadTextFile();
 }
 
 MainWindow::~MainWindow()
@@ -35,4 +39,20 @@ void MainWindow::loadTextFile()
     QTextCursor cursor = ui->textEdit->textCursor();
     cursor.movePosition(QTextCursor::Start, QTextCursor::MoveAnchor, 1);
 
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    QtWebEngine::initialize();
+
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+
+//    QWebEngineView view;
+//    view.setUrl(QUrl(QStringLiteral("http://www.qt.io")));
+//    view.resize(1024, 750);
+//    view.show();
 }

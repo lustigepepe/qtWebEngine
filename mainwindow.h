@@ -2,6 +2,22 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtCore/QFileInfo>
+#include <QtCore/QUrl>
+
+class Utils : public QObject {
+    Q_OBJECT
+public:
+    Q_INVOKABLE static QUrl fromUserInput(const QString& userInput);
+};
+
+inline QUrl Utils::fromUserInput(const QString& userInput)
+{
+    QFileInfo fileInfo(userInput);
+    if (fileInfo.exists())
+        return QUrl::fromLocalFile(fileInfo.absoluteFilePath());
+    return QUrl::fromUserInput(userInput);
+}
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +33,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
