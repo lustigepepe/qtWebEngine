@@ -2,10 +2,12 @@
 #include "ui_mainwindow.h"
 #include <QFile>
 #include <QTextStream>
-
+#include "previewpage.h"
 //#include <QWebEngineView>
 #include <QQmlApplicationEngine>
-#include <qtwebengineglobal.h>
+//#include <qtwebengineglobal.h>
+#include <QWebChannel>
+#include <memory>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -43,16 +45,9 @@ void MainWindow::loadTextFile()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QWebEngineView* view = new QWebEngineView(this);
+    view->load(QUrl("http://qt-project.org/"));
+    view->show();
 
-    QtWebEngine::initialize();
-
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-
-//    QWebEngineView view;
-//    view.setUrl(QUrl(QStringLiteral("http://www.qt.io")));
-//    view.resize(1024, 750);
-//    view.show();
+    ui->preview->setPage(view->page());
 }

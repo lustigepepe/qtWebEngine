@@ -4,14 +4,14 @@
 #
 #-------------------------------------------------
 requires(qtConfig(accessibility))
-QT       += core gui qml quick webengine
+QT       += core gui qml quick webenginewidgets webchannel
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = One
 TEMPLATE = app
-
+CONFIG += c++17
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -24,12 +24,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+HEADERS += \
+        mainwindow.h \
+        previewpage.h \
+        document.h
+
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
-
-HEADERS += \
-        mainwindow.h
+        mainwindow.cpp \
+        previewpage.cpp \
+        document.cpp
 
 FORMS += \
         mainwindow.ui

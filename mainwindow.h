@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "document.h"
+
 #include <QMainWindow>
 #include <QtCore/QFileInfo>
 #include <QtCore/QUrl>
@@ -38,6 +40,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     void loadTextFile();
+    Document m_content;
 };
 
 #endif // MAINWINDOW_H
